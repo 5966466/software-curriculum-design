@@ -1,0 +1,12 @@
+<h1> Welcome to application {{ app.appName }}! </h1>
+<h3> Choose the file you want to analyze </h3>
+
+<ul>
+{% for f in files %}
+<li> <a href="{% url 'data:show_approx' id app.id f %}"> {{ f }} </a> </li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'data:delete' id app.id %}"> delete </a> &nbsp;
+<a href="{% url 'data:before_revise' id app.id %}"> revise </a> &nbsp;
+<a href="{% url 'data:detail' id %}"> return </a>

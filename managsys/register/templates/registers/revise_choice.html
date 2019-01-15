@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="css/login.css">
+    <title>revise-choice</title>
+    {% load static %}
+    <meta charset="utf-8"> 
+	<link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/themes/default/easyui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/themes/icon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/demo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/css/add.css' %}">
+</head>
+<body>
+	<div class="container" style="width: 480px;height: 450px;border-radius:4px;">
+		<form action="{% url 'register:revise' account.id choice.id %}" method="post">
+			{% csrf_token %}
+			<p class="title" style="margin-left: -25px;">Revise</p>
+			<div class="error_messeage" style="margin-left:35px;margin-top:60px;">
+				{% if error_message is not None %}
+				<font color="#FF0000"> {{error_message}} <br> </font>
+				{% endif %}
+			</div>
+			<div class="IPv4-box" style="margin-left:10px;margin-top:80px;">
+				<span style="color: red">*</span>
+				<label>IPv4</label>
+				<div class="IPv4-input">
+					<input type="text" name="value" class="easyui-textbox"  iconWidth="28" style="width:280px;height:34px;padding:10px;font-size:15px"
+					value="{{ choice.ipAddr }}" >
+				</div>
+			</div>
+
+			<div class="Port-box" style="margin-left:10px;margin-top:140px;">
+				<span style="color: red">*</span>
+				<label>Port</label>
+				<div class="Port-input">
+					<input type="text" name="value" class="easyui-textbox"  iconWidth="28" style="margin-left:1px;width:280px;height:34px;padding:10px;font-size:15px" value="{{ choice.port }}">
+				</div>
+			</div>
+
+			<div class="user-box" style="margin-left:10px;margin-top:200px;">
+				<span style="color: red">*</span>
+				<label>User&nbsp;Name</label>
+				<div class="user-input">
+					<input type="text" name="value" class="easyui-textbox"  iconWidth="28" style="margin-left:2px;width:280px;height:34px;padding:10px;font-size:15px" value="{{ choice.userName }}">
+				</div>
+			</div>
+
+			<div class="password-box" style="margin-left:10px;margin-top:260px;">
+				<span style="color: red">*</span>
+				<label>Password</label>
+				<div class="password-input">
+					<input type="password" name="value" class="easyui-passwordbox"  iconWidth="28" style="margin-left:1px;width:280px;height:34px;padding:10px;font-size:15px" value="{{ choice.userPasswd }}">
+				</div>
+			</div>
+
+			<div class="path-box" style="margin-left:10px;margin-top:320px;">
+				<span style="color: red">*</span>
+				<label>File&nbsp; Path</label>
+				<div class="path-input">
+					<input type="text" name="value" class="easyui-textbox"  iconWidth="28" style="margin-left:-1px;width:280px;height:34px;padding:10px;font-size:15px"value="{{ choice.serverPath }}" >
+				</div>
+			</div>
+
+			<div class="submit-box" style="margin-top:380px;">
+				<input id = "submit-button" type="submit" value="Submit" style="margin-left:-20px;font-size: 15px">
+			</div>
+
+			<div class="cancel-box" style="margin-top:390px;">
+				 <a href="{% url 'register:detail' account.id %}" style="text-decoration: none;margin-left:20px;color: grey;"> cancel </a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

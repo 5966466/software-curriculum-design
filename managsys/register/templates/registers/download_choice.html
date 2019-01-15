@@ -1,0 +1,13 @@
+<form action="{% url 'register:download' id c_id %}" method="post">
+	{% csrf_token %}
+	{% if error_message is not None %}
+		<font color="#FF0000"> {{error_message}} <br> </font>
+	{% endif %}
+	<input type="radio" name="choice" id="1" value="ftp">
+	<label for="1"> FTP </label>
+	<br>
+	<input type="radio" name="choice" id="2" value="sftp">
+	<label for="2"> SFTP </label>
+	<br>
+	<input type="submit" value="Submit"> &nbsp; <a href="{% url 'register:detail' id %}"> cancel </a>
+</form>

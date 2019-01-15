@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    {% csrf_token %}
+    <meta charset="utf-8"> 
+    <title>home page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'register/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/css/dialog.css' %}"> 
+    <link rel="stylesheet" type="text/css" href="{% static 'register/css/home.css' %}">    
+    <link rel="stylesheet" type="text/css" href="{% static 'register/css/navigation.css' %}">  
+    <script type="text/javascript" src="{% static 'register/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'register/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'register/js/home.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'register/js/dialog_move.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}">
+    <script type="text/javascript" language="javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+
+   
+    <script>
+        var test = 'testing';
+        var online = false;
+        var wasnotinarea = true;
+        var reminder = 'welcome';
+        $(document).ready(function(){
+                $("#loginorsignup").hide()
+        });
+        $(document).ready(function(){
+                $("#dialog_form").hide()
+        });
+        $(document).ready(function(){
+            $("#login_button").mouseover(function(){
+                $("#loginorsignup").show();
+                wasnotinarea = false;
+            });
+            
+            $("#login_button").mouseleave(function(){
+                wasnotinarea = true;
+                setTimeout(function () { 
+                    if(wasnotinarea){
+                        $("#loginorsignup").hide()};    
+                    }, 2000);
+                
+            });
+        });
+
+
+    function click_sign_up(){
+        window.open("{% url 'register:signup' %}");
+    }
+
+    function click_log_out(){
+            document.getElementById("choice_login").style.color="rgb(37,198,254);";
+            document.getElementById("choice_logout").style.color="gray";
+            window.open("{% url 'register:welcome' %}");
+            window.open("about:blank","_self").close()  
+    }
+
+    function click_nav_button(id_button, id_space){
+        $(".button_gy_clicked").attr("class","button_gy");
+        $('#'+id_button).attr("class","button_gy_clicked");
+        $(".displayspace").hide();
+        $('#'+id_space).show();
+    }
+
+    $(document).ready(function() {
+    $("#detail").DataTable({
+    scrollY: 280,
+    dom: 'Bfrtip',
+    buttons: [
+        'copy', 
+        'excel', 
+        'pdf',
+        'print',
+    ],
+    select: true,
+    });
+    });
+
+	$(document).ready(function() {
+    $('#filetable').DataTable();
+	} );
+
+    $(document).ready(function() {
+    $("#apptable").DataTable({
+    scrollY: 280,
+    dom: 'Bfrtip',
+    buttons: [
+        'copy', 
+        'excel', 
+        'pdf',
+        'print',
+    ],
+    select: true,
+    });
+    });
+
+ 
+
+    </script>
+   
+   {% if prestatus == 'appspace' %} 
+    <script>
+        $(document).ready(function(){
+            click_nav_button('gryy','appspace');
+        });
+    </script>
+    {% else %}
+        {% if prestatus == 'filespace' %} 
+        <script>
+            $(document).ready(function(){
+                click_nav_button('showfile','filespace');
+            });
+        </script>
+        {% else %}
+        <script>
+            $(document).ready(function(){
+                click_nav_button('gl','tablespace');
+            });
+        </script>
+        {% endif %}
+    {% endif %}
+
+</head>   
+
+<body style="background-color:rgb(137,181,233)"> 
+
+<div class="container" style="height:600px; width: 100%; padding-top: 0px; padding-left:7px; padding-right: 0px;">
+	<div class="row clearfix topbar" style="z-index:999;">
+
+        <div class="col-md-1 column">
+			<img src="{% static url %}" width="70" height="70" style="border-radius:50%; margin-top: 4px;">
+            <!--    <input type="button" class="login_button" id="login_button" style="height: 70px; width: 70px; background-image:{% static url %}"> -->
+        </div>
+        <div class="col-md-8 column">                
+                    <p class="user_name" id="user_name">{{ account.user.username }}</p>
+        </div>
+        <div class="col-md-3 column">
+                <div class="btn-group" style="margin-top: 20px; margin-left: 120px; ">
+                    <button type="button" class="button_menu" data-toggle="dropdown">
+                    </button>
+                    <ul class="dropdown-menu" style="width: 125px" role="menu">
+                        <li><a href="{% url 'register:revise_account' account.id %}"><button class="button_settings"></button> &nbsp;settings</a></li>
+                        <li><a href="{% url 'register:logout'  %}"><button class="button_logout"></button> &nbsp;log out</a></li>
+                    </ul>
+                </div>
+
+                <script>
+                    document.getElementById("choice_login").style.color="gray";
+                    document.getElementById("choice_logout").style.color="rgb(37,198,254)"; 
+                    online = true;  
+                </script>
+        </div>  	
+    </div>
+
+    <div class="row clearfix" style="margin-top: 77px; margin-left:0px; height: 100%; width: 100%; position:fixed;" id="workspace">
+        <div class="col-md-1 column navigation" id="navigation" style="padding:5px;">          
+            <input id="gl"class = "button_gy" type="button" value="download"  onclick="click_nav_button('gl','tablespace')" style="font-size:20px">
+        <!--    <input id="file" class = "button_gy" type="button" value="文件" onclick="click_nav_button('file','filespace')"> -->
+            <input id="gryy" class = "button_gy" type="button" value="applications" onclick="click_nav_button('gryy','appspace')" style="font-size:20px">
+			<input id="showfile" class = "button_gy" type="button" value="files" onclick="click_nav_button('showfile','filespace')" style="font-size:20px">
+        </div>
+        <div class="col-md-11 column" style="padding-left:7px">
+            <div class="displayspace" style="padding:0px" id="tablespace">
+            <div style="height:600px;width: 90%; margin-left: 5%;">    
+                <br>
+				<form action="{% url 'register:multi_process' account.id %}" method="post">
+				{% csrf_token %}
+                {% if error_message is not None %}
+					<font color="#FF0000" id="error_message"> {{error_message}} <br> </font>
+				{% endif %}
+                <table id="detail" class="display" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th> IP Address </th>
+                        <th> User </th>
+                        <th> File Path </th>
+                        <th> Operation </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for ip in account.ipaddr_set.all %}
+                        <tr>
+                           <td> <input type="checkbox" name="list" value="{{ ip.id }}"> {{ ip.ipAddr }}:{{ ip.port }} </td>
+                            <td> {{ ip.userName }} </td>
+                            <td> {{ ip.serverPath }} </td>
+                            <td> 
+                                <input type="button" class="downloadbutton" onclick="location.href='{% url 'register:loading_download' account.id ip.id %}'"> &nbsp; 
+                                <input type="button" class="editbutton" onclick="location.href='{% url 'register:before_revise' account.id ip.id %}'"> &nbsp; 
+                                <input type="button" class="deletebutton" onclick="location.href='{% url 'register:delete' account.id ip.id %}'">  
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <input type="button" class="btn addbutton" onclick="location.href='{% url 'register:before_add' account.id %}'" >
+                <br><br>
+                <div class="btn-group dropup">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Download All
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li> &nbsp; &nbsp;<input type="submit" style="outline: none; width: 130px; background-color: white; border:0px solid" name="choice" value="ftp"></li>
+                            <li class="divider"></li>
+                            <li> &nbsp; &nbsp;<input type="submit" style="outline: none; width: 130px; background-color: white; border:0px solid" name="choice" value='sftp'></li>
+                        </ul>
+                </div>
+                &nbsp;
+                <input class="btn btn-primary dropdown-toggle" type="submit" value="Delete All" name="post"> &nbsp;
+                <input class="btn btn-primary dropdown-toggle" type="submit" value="Revise" name="post"> &nbsp;
+                </form>
+		   
+            </div>        
+            </div>
+
+            
+            <div class="displayspace" style="padding:0px" id="appspace">
+            <div style="min-height:600px;width: 90%; margin-left: 5%;">  
+                <br>
+                
+            <div style="display: flex; flex-wrap: wrap">
+                {% for app in account.app_set.all %}
+                <div class="appspace">
+                    <div><button class="applogo" onclick="location.href='{% url 'data:application' account.id app.id 'NULL' %}'"></button></div>
+                    <div class="appname">{{ app.appName }}</div>
+                </div>
+                {%endfor%}
+
+                <div class="appspace">
+                    <div><button class="addbutton_app" onclick="location.href='{% url 'data:before_add' account.id %}'"></button></div>
+                </div>
+            </div>
+
+            </div>
+            </div>
+			
+			
+			<div class="displayspace" style="padding:0px" id="filespace">
+            <div style="min-height:600px;width: 90%; margin-left: 5%;">  
+                <br>
+				<table id="filetable" class="display" style="width:100%">
+				<thead>
+					<tr>
+						<th> Filename </th>
+						<th> Operation </th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for f in files %}
+						<tr>
+                            <td> {{ f }} </td>
+                            <td> 
+                            <input type="button" class="downloadbutton" onclick="location.href='{% url 'data:downloadLocal' account.id f %}'">&nbsp;
+                            <input type="button" class="deletebutton" onclick="location.href='{% url 'data:delete_file' account.id f %}'">
+                        </td>
+						</tr>
+					{% endfor %}
+				</tbody>
+				</table>
+				
+			<p>
+				<input type="button" class="addbutton" onclick="location.href='{% url 'data:before_upLog' account.id %}'" >
+			</p>
+
+            </div>
+            </div>
+			
+			
+
+        </div>
+    </div>
+
+</div>
+       
+</body>
+</html>

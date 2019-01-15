@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>add</title>
+    {% load static %}
+    <meta charset="utf-8"> 
+	<link rel="stylesheet" type="text/css" href="{% static 'data/jquery-easyui-1.6.11/themes/default/easyui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'data/jquery-easyui-1.6.11/themes/icon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'data/jquery-easyui-1.6.11/demo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'data/css/add.css' %}">
+    <script type="text/javascript" src="{% static 'data/js/jquery.min.js' %}">
+    </script>
+    <script type="text/javascript" src="{% static 'data/js/jquery3.min.js' %}"></script>
+    <script>
+    	function select_file1(){
+        	document.getElementById("up_file1").click();
+    		var name = document.getElementById("up_file1").value;
+		}
+
+		function select_file2(){
+        	document.getElementById("up_file2").click();
+    		var name = document.getElementById("up_file2").value;
+		}
+
+		function select_file3(){
+        	document.getElementById("up_file3").click();
+    		var name = document.getElementById("up_file3").value;
+		}
+
+		function select_file4(){
+        	document.getElementById("up_file4").click();
+    		var name = document.getElementById("up_file4").value;
+		}
+    </script>
+    <style type="text/css">
+    	.Upload_file_box1{
+    		margin-top: 100px;
+    		margin-left: 60px;
+    	}
+    	.Upload_file_box2{
+    		margin-top: 15px;
+    		margin-left: 60px;
+    	}
+    	.Upload_file_box3{
+    		margin-top: 15px;
+    		margin-left: 60px;
+    	}
+    	.Upload_file_box4{
+    		margin-top: 15px;
+    		margin-left: 60px;
+    	}
+    </style>
+</head>
+
+<body>
+	<div class="container" style="width: 460px;height: 540px;border-radius:4px;">
+		<form method="post" action="{% url 'data:add' id %}" enctype="multipart/form-data">
+			{% csrf_token %}
+			<p class="title" style="margin-top: 0px;margin-left:-35px;">Add</p>
+			<div class="error_messeage" style="margin-left:10px;margin-top:-30px;font-size: 15px">
+				{% if error_message is not None %}
+				<font color="#FF0000"> {{error_message}} <br> </font>
+				{% endif %}
+			</div>
+			<div class="IPv4-box" style="width: 350px;margin-left:60px;margin-top:-20px;">
+				<label>App Name:</label>
+				<div class="IPv4-input">
+					<input type="text" name="appName" style="font-size:15px;width:350px;margin-left:-60px;height:40px;border:1px solid #34495E">
+				</div>
+			</div>
+			
+			<div class="Upload_file_box1">
+				<label style="font-weight: 800">Process Program:</label><br>
+				<input id="fname1" type="text"  tabindex="1" style="font-size:15px;width:72%;margin-left:5px;height:40px;border:1px solid #34495E"/><!--用于显示上传文件名的input-->
+        		<input id="up_file1" name="data" type="file"  style="display:none" onchange="document.getElementById('fname1').value=this.value"/><!--实际起作用的file型input-->
+        		<input type="button" name="submit" style="font-size:15px;margin-top:2px;margin-left:-5px;width:16%;height:40px;border:1px solid #34495E;background-color:#34495E;color:#ffffff" value="browse" onclick="select_file1();"/><!--用于触发file型input浏览按钮的button-->
+			</div>
+
+			<div class="Upload_file_box2">
+				<label style="font-weight: 800">Analysis Program:</label><br>
+				<input id="fname2" type="text"  tabindex="2" style="font-size:15px;width:72%;margin-left:5px;height:40px;border:1px solid #34495E"/><!--用于显示上传文件名的input-->
+        		<input id="up_file2" name="data" type="file"  style="display:none" onchange="document.getElementById('fname2').value=this.value"/><!--实际起作用的file型input-->
+        		<input type="button" name="submit" style="font-size:15px;margin-top:2px;margin-left:-5px;width:16%;height:40px;border:1px solid #34495E;background-color:#34495E;color:#ffffff" value="browse" onclick="select_file2();"/><!--用于触发file型input浏览按钮的button-->
+			</div>
+
+			<div class="Upload_file_box3">
+				<label style="font-weight: 800">Display Program:</label><br>
+				<input id="fname3" type="text"  tabindex="3" style="font-size:15px;width:72%;margin-left:5px;height:40px;border:1px solid #34495E"/><!--用于显示上传文件名的input-->
+        		<input id="up_file3" name="data" type="file"  style="display:none" onchange="document.getElementById('fname3').value=this.value"/><!--实际起作用的file型input-->
+        		<input type="button" name="submit" style="font-size:15px;margin-top:2px;margin-left:-5px;width:16%;height:40px;border:1px solid #34495E;background-color:#34495E;color:#ffffff" value="browse" onclick="select_file3();"/><!--用于触发file型input浏览按钮的button-->
+			</div>
+
+			<div class="Upload_file_box4">
+				<label style="font-weight: 800">Other Supplemental Files:</label><br>
+				<input id="fname4" type="text"  tabindex="4" style="font-size:15px;width:72%;margin-left:5px;height:40px;border:1px solid #34495E"/><!--用于显示上传文件名的input-->
+        		<input id="up_file4" name="others" type="file"  style="display:none" onchange="document.getElementById('fname4').value=this.value"/><!--实际起作用的file型input-->
+        		<input type="button" name="submit" style="font-size:15px;margin-top:2px;margin-left:-5px;width:16%;height:40px;border:1px solid #34495E;background-color:#34495E;color:#ffffff" value="browse" onclick="select_file4();"/><!--用于触发file型input浏览按钮的button-->
+			</div>
+
+			<div class="submit-box" style="margin-top:20px;margin-left:220px">
+				<input id = "submit-button" type="submit" value="Upload" style="font-size:15px;margin-left:-90px;">
+			</div>
+
+			<div class="cancel-box" style="margin-top:30px;margin-left:240px;">
+				 <a href="{% url 'data:detail' id prestatus %}" style="text-decoration: none;margin-left:20px;color: grey;"> cancel </a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

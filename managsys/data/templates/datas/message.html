@@ -1,0 +1,6 @@
+{% if type == 1 %}
+<meta http-equiv="Refresh" content="0;URL={% url 'data:detail' account.id prestatus %}">
+{% endif %}
+{% if type == 2 %}
+<meta http-equiv="Refresh" content="0;URL={% url 'data:application' account.id app.id error_message %}">
+{% endif %}

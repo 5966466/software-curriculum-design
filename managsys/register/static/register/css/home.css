@@ -1,0 +1,188 @@
+
+.topbar{
+    height: 70px;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+    position: fixed;
+    background-color: rgb(255,255,255,0);
+}
+
+.user_name{
+    color: white;
+    font-size: 48px;
+    text-align: start;
+}
+
+.login_button{
+    float: right;
+    height: 35px;
+    width: 35px;
+   
+    background-size:cover;
+    outline-color:rgb(255,255,255,0);
+    border-color:white;
+    border-width: 0px;
+    margin-top: 5px;
+    outline-width: 0px;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+.login_button:hover{
+    height: 35px;
+    width: 35px;
+
+    background-size:cover;
+    border-color:white;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 0px;
+    outline-color:white;
+}
+
+.button_menu {
+    background-image:url(menu-2.png); 
+    background-size:cover;
+    background-color: rgb(137,181,233); 
+    color: rgb(30,84,148); 
+    height: 40px;
+    width: 40px;
+    border: 1px solid rgb(137,181,233);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.button_logout {
+    background-image:url(logout.png); 
+    background-size:cover;
+    background-color: white; 
+    height: 20px;
+    width: 20px;
+    border: 0px solid rgb(137,181,233);
+    outline: none;
+}
+
+.button_settings {
+    background-image:url(setting.png); 
+    background-size:cover;
+    background-color: white; 
+    height: 20px;
+    width: 20px;
+    border: 0px solid rgb(137,181,233);
+    outline: none;
+}
+
+.addbutton{
+    height: 35px;
+    width: 35px;
+    margin-top: 10px;
+    background-image:url(addbutton.png); 
+    background-size:cover;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 0px;
+    outline: none;
+}
+
+.downloadbutton{
+    height: 25px;
+    width: 25px;
+    background-image:url(download.png); 
+    background-size:cover;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 0px;
+}
+
+.deletebutton{
+    height: 25px;
+    width: 25px;
+    background-image:url(delete.png); 
+    background-size:cover;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 0px;
+}
+
+.editbutton{
+    height: 25px;
+    width: 25px;
+    background-image:url(edit.png); 
+    background-size:cover;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 0px;
+}
+
+.choice{
+    height: 23px;
+    width: 100px;
+    background-color: white;
+    border-style: solid;
+    color:rgb(37,198,254);
+    font: bold;
+}
+
+.choice:hover{
+    height: 23px;
+    width: 100px;
+    background-color: rgb(224,236,249);
+    border-style: solid;
+    color:rgb(37,198,254);
+    font: bold;
+}
+
+.addback{
+    background-image:url(signup.jpg); 
+    background-size:cover;
+}
+
+.appspace{
+    height: 100px;
+    width: 100px;
+    padding: 5px;
+}
+
+.applogo{
+    height: 70px;
+    width: 70px;
+    border-radius: 7px;
+    cursor: pointer;
+    background-image: url(app.png);
+    background-size: cover;
+    border-style: solid;
+    border-width: 0px;
+    outline: none;
+}
+
+.applogo:hover{
+    height: 70px;
+    width: 70px;
+    cursor: pointer;
+    background-image: url(app.png);
+    background-size: cover;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(137,181,233);
+}
+
+
+.appname{
+    height: 20px;
+    width: 70px;
+    text-align: center;
+}
+
+.addbutton_app{
+    height: 50px;
+    width: 50px;
+    margin: 15px;
+    margin-left: 20px;
+    background-image:url(addbutton.png); 
+    background-size:cover;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 0px;
+}

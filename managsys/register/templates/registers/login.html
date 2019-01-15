@@ -1,0 +1,9 @@
+<form method="post" action="{% url 'register:after_login' %}">
+	{% csrf_token %}
+	{% if error_message is not None %}
+		<font color="#FF0000"> {{error_message}} <br> </font>
+	{% endif %}
+	Account Name: <input type="text" name="in_name" size="22" maxlength="20" > <br>
+	Account Password: <input type="password" name="in_passwd" size="22" maxlength="20" > <br>
+	<input type="submit" value="Log in" > &nbsp; <a href="{% url 'register:signup' %}"> Sign up </a>
+</form>

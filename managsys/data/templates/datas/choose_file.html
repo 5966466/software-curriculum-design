@@ -1,0 +1,35 @@
+<h1> Manage Files </h1>
+
+{% load static %}
+<script type="text/javascript" language="javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}">
+  
+
+<script>
+$(document).ready(function() {
+    $('#detail').DataTable();
+} );
+</script>
+
+<table id="detail" class="display" style="width:100%">
+	<thead>
+		<tr>
+			<th> Filename </th>
+			<th> Operation </th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for f in files %}
+			<tr>
+				<td> {{ f }} </td>
+				<td> <a href="{% url 'data:delete_file' account.id f %}"> delete </a> </td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+<p>
+	<a href="{% url 'data:before_upLog' account.id %}"> Add </a> &nbsp; <a href="{% url 'data:detail' account.id %}"> Return </a>
+</p>

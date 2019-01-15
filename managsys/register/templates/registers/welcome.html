@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    
+    <meta charset="utf-8"> 
+    <title>welcome</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'register/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/css/dialog.css' %}"> 
+    <link rel="stylesheet" type="text/css" href="{% static 'register/css/home.css' %}">    
+    <link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/themes/default/easyui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/themes/icon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/demo.css' %}">
+    <script type="text/javascript" src="{% static 'register/jquery-easyui-1.6.11/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'register/jquery-easyui-1.6.11/jquery.easyui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'register/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'register/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="{% static 'register/js/dialog_move.js' %}"></script>
+    <script>
+        var test = 'testing';
+        var online = false;
+        var wasnotinarea = true;
+        var reminder = 'welcome';
+
+    function click_sign_up(){
+        window.open("{% url 'register:signup' %}");
+    }
+
+    function click_login(){
+        $(".loginorsignup").hide();
+        $(".dialog").show();
+    }
+
+    function click_back(){
+        $(".dialog").hide();
+        $(".loginorsignup").show();
+    }
+
+    function dialog_close(){
+        $("#dialog_form").hide();
+        $("#dialog_form_with_error").hide();
+        document.getElementById("ppt").style.opacity="1";
+    }
+
+    function dialog_show(){
+        if(online != true){
+            $("#dialog_form").show();
+            $("#dialog_form_with_error").show();
+            document.getElementById("ppt").style.opacity="0.6";
+            }        
+    }
+
+
+</script>
+   
+</head>   
+
+<body style="background-color:rgb(255, 255,255,0.5); padding: 0px;">  
+    
+        {% if error_message is None %}
+    <div class="dialog">
+        <form id="dialog_form" class="login_form" action="{% url 'register:after_login' %}" method="POST" enctype="multipart/form-data"> 
+            {% csrf_token %}
+            <p class="dialog_form_title" style="margin: 0%" id="reminder">welcome</p>
+            
+    <div style="margin:0px 0px;">
+    <div class="easyui-panel" style="width:400px;padding:40px 40px;">
+        <div style="margin-bottom:20px">
+            <input name="in_name" class="easyui-textbox" prompt="Username" iconWidth="28" style="width:318px;height:34px;padding:10px;">
+        </div>
+        <div style="margin-bottom:20px">
+            <input name="in_passwd" class="easyui-passwordbox" prompt="Password" iconWidth="28" style="width:318px;height:34px;padding:10px">
+        </div>
+        <input type="submit" class="button" id="dialog_login"  value="OK" style="margin-left:18%"> 
+        <input type="button" class="button" id="dialog_signup" value="Back" onclick="click_back()">
+    </div>
+    </div>  
+        </form>
+    </div>  
+    
+    <script>$(".dialog").hide()</script>
+        {% endif %}
+
+        {% if error_message is not None %}
+        <div class="dialog">
+        <form id="dialog_form_with_error" class="login_form" action="{% url 'register:after_login' %}" method="POST" enctype="multipart/form-data"> 
+            {% csrf_token %}   
+            <p  style="margin: 0%; height: relative;"   class="dialog_form_title"> Welcome <br> </p> 
+           
+            <div style="margin:0px 0px; height: relative;">
+                <div class="easyui-panel" style="width:400px;padding:40px 40px ">
+                        <p style="color:red">{{error_message}}<p>
+                    <div style="margin-bottom:20px">
+                        <input name="in_name" class="easyui-textbox" prompt="Username" iconWidth="28" style="width:100%;height:34px;padding:10px;">
+                    </div>
+                    <div style="margin-bottom:20px">
+                        <input name="in_passwd" class="easyui-passwordbox" prompt="Password" iconWidth="28" style="width:100%;height:34px;padding:10px">
+                    </div>
+                    <input type="submit" class="button" id="dialog_login"  value="OK" style="margin-left:18%"> 
+                    <input type="button" class="button" id="dialog_signup" value="Back" onclick="click_back()">
+                </div>
+                </div> 
+        </form>
+        </div>
+        {% endif %}
+
+        <div class="loginorsignup">
+            <p class="dialog_title" style="margin: 0%; background-color: transparent; font-size: 64px;" id="hellow">Hello</p>
+            <br><br><br>
+            <input type="button" class="button_login" id="dialog_login"  value="log in" style="margin-left:20px" onclick="click_login()"> 
+            <input type="button" class="button_signup" id="dialog_signup" value="sign up"  style="margin-left: 60px" onclick="location.href='{% url 'register:signup' %}'">
+        </div>
+        {% if error_message is not None %}
+            <script>click_login()</script>
+        {% endif %}
+
+   
+<div class="container" style="width: 100%; height: 100%; padding: 0px;">
+	<div class="row clearfix topbar" style="z-index:999;">
+        <!--
+        <div class="col-md-1 column">
+                <button id="login_button" class="login_button" onclick="location.href='{% url 'register:login' %}'">  </button>
+        </div>
+        <div class="col-md-11 column">
+               <p class="user_name" id="user_name">Hi {{username}}</p>
+        </div>  
+        -->	
+    </div>
+    
+
+    <div class="row clearfix" style="margin-top: 0px; padding: 0px;" id="ppt">
+    <div class="col-md-12 column" style="position: relative; width: 100%; height: 100%; padding: 0px;">
+
+        
+
+			<div class="carousel slide" id="carousel" style="width: 100%; padding-left: 5px">
+				<ol class="carousel-indicators">
+					<li data-slide-to="0" data-target="#carousel"  class="active"></li>
+					<li data-slide-to="1" data-target="#carousel"></li>
+					<li data-slide-to="2" data-target="#carousel"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active"><img src="{% static 'register/css/test1.jpg' %}" alt="First1 slide"></img></div>
+					<div class="item"> <img src="{% static 'register/css/test2.jpg' %}" alt="First2 slide"></img></div>
+					<div class="item"> <img src="{% static 'register/css/test3.jpg' %}" alt="First3 slide"></img></div>
+                </div> 
+                
+            </div>
+            <button>
+            <button  class="button_ppt_left" href="#carousel" role="button" data-slide="prev"  style="margin-left: 1150px">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </button>
+           
+            <button class="button_ppt_right" href="#carousel" role="button" data-slide="next" style="margin-left: 1200px">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style></span>
+                <span class="sr-only">Next</span>
+            </button>
+    </div>       
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+
+

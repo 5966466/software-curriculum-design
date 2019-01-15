@@ -1,0 +1,223 @@
+.container{
+	position: relative;
+	height: 490px;
+	width: 500px;
+	margin: 0 auto;
+	top:50px;
+	z-index: 99999;
+	background:#ffffff;
+	border:2px solid #ccc;
+}
+
+.title{
+	width: 520px;
+	height: 50px;
+	margin-left: -5px;
+	margin-top: 5px;
+	text-align: center;
+	font-size: 28px;
+	font-weight: 800;
+	color: rgb(51,133,255);
+	line-height: 50px;
+}
+
+.error_messeage{
+	position: absolute;
+	width: 440px;
+	height: 40px;
+	margin-top:15px;
+	margin-left:35px;
+	text-align: center;
+	font-size: 15px;
+	color: #ff0000;
+}
+
+.contentbox{
+	position: relative;
+	width: 500px;
+	height: 440px;
+	margin-top:0px;
+}
+
+.IPv4-box{
+	position: absolute;
+	width: 440px;
+	height: 40px;
+	line-height: 40px;
+	margin-top:50px;
+	margin-left:10px;
+	font-weight: 700;
+}
+
+.IPv4-input{
+	display: inline-block;
+	margin-left: 64px;
+	/*background: green;*/
+}
+
+.Port-box{
+	position: absolute;
+	width: 440px;
+	height: 40px;
+	line-height: 40px;
+	margin-top:110px;
+	margin-left:10px;
+	font-weight: 700;
+}
+
+.Port-input{
+	display: inline-block;
+	margin-left: 64px;
+	/*background: green;*/
+}
+
+.user-box{
+	position: absolute;
+	width: 440px;
+	height: 40px;
+	line-height: 40px;
+	margin-top:170px;
+	margin-left:10px;
+	font-weight: 700;
+}
+
+.user-input{
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.password-box{
+	position: absolute;
+	width: 440px;
+	height: 40px;
+	line-height: 40px;
+	margin-top:230px;
+	margin-left:10px;
+	font-weight: 700;
+}
+
+.password-input{
+	display: inline-block;
+	margin-left: 22px;
+}
+
+.path-box{
+	position: absolute;
+	width: 440px;
+	height: 40px;
+	line-height: 40px;
+	margin-top:290px;
+	margin-left:10px;
+	font-weight: 700;
+}
+
+.path-input{
+	display: inline-block;
+	margin-left: 25px;
+}
+
+.submit-box{
+	position:absolute;
+	width: 70px;
+	height: 30px;
+	line-height: 40px;
+	margin-top: 360px;
+	margin-left:170px;
+	border-radius: 5px;
+}
+
+#submit-button{
+	background: rgb(51,133,255);
+	color: white;
+	display: inline-block;
+	width: 70px;
+	height: 30px;
+	border: 1px solid rgb(51,133,255);
+	border-radius: 5px;
+	outline: none;
+}
+
+#submit-button:hover{
+	cursor:pointer;
+	background: rgb(0,133,255);
+}
+
+
+.cancel-box{
+	position:absolute;
+	width: 150px;
+	height: 20px;
+	margin-top: 370px;
+	margin-left:250px;
+}
+
+.nav{
+	height: 50px;
+}
+.nav>a{
+	padding: 0 15px;
+	width: 248px;
+	height: 50px;
+	line-height: 50px;
+	display: block;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	float: left;
+	cursor: pointer;
+}
+.nav>a[class="on-2-login"]{
+	background-color: #89caf4;
+	border-bottom: 1px solid #eee;
+}
+.login{
+	background-color: #89caf4;
+}
+.login.on{
+	background-color: #e1f2fc;
+}
+
+.contentbox>div{
+	width: 496px;
+	height: 436px;
+	text-align: center;
+	display: none;
+	background-color: #e1f2fc;
+}
+.contentbox>div[class="box active"]{
+	display: block;
+}
+
+.Upload_file_box{
+	position: absolute;
+	width: 440px;
+	height: 40px;
+	line-height: 40px;
+	margin-top:110px;
+	margin-left:10px;
+	font-weight: 700;
+}
+
+.Upload_file_input{
+	display: inline-block;
+	margin-left: 100px;
+	outline: none;
+}
+
+.submit-box-file{
+	position:absolute;
+	width: 70px;
+	height: 30px;
+	line-height: 40px;
+	margin-top: 190px;
+	margin-left:160px;
+	border-radius: 5px;
+}
+
+.cancel-box-file{
+	position:absolute;
+	width: 150px;
+	height: 20px;
+	margin-top: 200px;
+	margin-left:210px;
+}

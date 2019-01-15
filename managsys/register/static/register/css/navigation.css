@@ -1,0 +1,39 @@
+.navigation{
+    background-color: white;
+    height: 600px;
+    border-radius: 7px;
+
+}
+
+.displayspace{
+    background-color: white;
+    border-radius: 7px;
+}
+
+.button_gy{
+   width: 100%;
+   margin-bottom: 2px;
+   font-family: Microsoft Yahei;
+   line-height: 50px;/*设置字体在块中的高度*/
+   background-color: white;
+   color: rgb(30,84,148);
+   text-align: center;/*字体居中*/
+   font-size: 15px;
+   border: 1px;
+}
+
+.button_gy:hover{
+   background-color: rgb(224,236,249);
+}
+
+.button_gy_clicked{
+    width: 100%;
+    font-family: Microsoft Yahei;
+    line-height: 50px;/*设置字体在块中的高度*/
+    background-color: rgb(91,146,208);
+    color: white;
+    text-align: center;/*字体居中*/
+    font-size: 15px;
+    border: 1px;
+    outline: none;
+ }

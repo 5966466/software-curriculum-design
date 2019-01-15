@@ -1,0 +1,115 @@
+{% load static %}
+
+<div id="container" style="width: 1400px;height:600px;"></div>
+<script src="{% static '/highcharts/highcharts.js' %}"></script>
+<script src="{% static '/highcharts/modules/exporting.js' %}"></script>
+<style>
+
+.btn_show_approx{
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	font-weight: 500;
+	color: rgb(137,181,233);
+	background-color: white;
+	border: 1px solid rgb(137,181,233);
+
+	cursor: pointer;
+}
+
+.btn_show_approx:hover{
+	background-color: rgb(137,181,233);
+	color: white;
+}
+</style>
+
+
+
+<script>
+	var options = {
+		chart: {
+			type: '{{ para.chart_type }}',
+			backgroundColor: 'transparent'
+		}, 
+		title: {
+			text: '{{ para.title_text }}'
+		}, 
+		xAxis: {
+			categories: [
+				{% for i in para.xAxis_categories %}
+					'{{ i }}', 
+				{% endfor %}
+			]
+		}, 
+		yAxis: {
+			title: {
+				text: '{{ para.yAxis_title_text }}'
+			}, 
+			type: '{{ para.yAxis_type }}',
+		}, 
+		tooltip: {
+			pointFormatter: function(){
+				return '<span style="color: '+ this.series.color + '">\u25CF</span> '+this.series.name+': <b>'+ this.y +'</b><br/>'
+			}, 
+			//Math.round(Math.pow(10, this.y)-1)
+			useHTML: true,
+			headerFormat: '<big>{point.key}</big><table><br/>',
+		}, 
+		plotOptions: {
+			series: {
+				cursor: 'pointer',
+				events: {
+					click: function(event) {
+						location.href=event.point.category;
+					}
+				}
+			}
+		},
+		
+
+		colors: ['rgb(77, 21, 104)', 'rgb(16, 175, 88)', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1'], 
+
+		series: [
+		
+			{% for i, j in para.series %}
+				{
+					name: '{{ i }}', 
+					data: {{ j }}, 
+				}, 
+			{% endfor %}
+		], 
+		credits:{
+			enabled: false
+		}
+	};
+	var chart = Highcharts.chart('container', options);
+
+	//$('#origin').click(function () {
+	//	chart.update({
+	//		subtitle: {
+	//			text: 'Origin'
+	//		}
+	//	});
+	//});
+	//{% for i, j in para.series %}
+	//	$('#{{ i }}').click(function () {
+	//		chart.update({
+	//			subtitle: {
+	//				text: '{{ i }}'
+	//			}, 
+	//			series: [{
+	//				name: '{{ i }}', 
+	//				data: j
+	//			}]
+	//		});
+	//	});
+	//{% endfor %}
+</script>
+{% load static %}
+<body style="background-image:url({% static 'data/css/spring.png' %});">
+<p> &nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="{% url 'data:show_detail' account.id id f 'ALL' %}"><button class="btn_show_approx">Show All</button></a>
+	&nbsp;&nbsp;
+	<a href="{% url 'data:application' account.id id 'NULL' %}"><button class="btn_show_approx">Return</button></a>
+</p>
+</body>

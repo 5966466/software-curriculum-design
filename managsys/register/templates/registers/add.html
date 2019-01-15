@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Add</title>
+    {% load static %}
+    <meta charset="utf-8"> 
+	<link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/themes/default/easyui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/themes/icon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/demo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/css/add.css' %}">
+    <script type="text/javascript" src="{% static 'register/jquery-easyui-1.6.11/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'register/jquery-easyui-1.6.11/jquery.easyui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'register/js/jquery.min.js' %}">
+    </script>
+    <script type="text/javascript" src="{% static 'register/js/jquery3.min.js' %}"></script>
+
+	<script>
+		/*
+		$(document).ready(function(){
+                    $("#error_2").hide();
+                });*/
+
+        $().ready(function(){
+            $(function(){
+                $(".nav a").off("click").on("click",function(){
+                    var index = $(this).index();
+                    $(this).addClass("on").siblings().removeClass("on");
+                    $(".contentbox .box").eq(index).addClass("active").siblings().removeClass("active");
+                });
+            });
+        })
+
+    	function select_file(){
+        	document.getElementById("up_file").click();
+    		var name = document.getElementById("up_file").value;
+		}
+
+		/*function is_error(obj){
+			if(obj.data.value=="")
+			{
+				$("#error_2").show();
+				return false;
+			}
+		}*/
+
+    </script>
+    <!--[if lte IE 9]>
+     <script src="https://cdn.bootcss.com/jquery-placeholder/2.3.1/jquery.placeholder.min.js"></script>
+     <script>
+        $(function(){
+            $('input[placeholder]').placeholder();
+            $('.password').css({"margin-top":"17px"})
+        });
+     </script>
+    <![endif]-->
+</head>
+<body>
+	<div class="error_messeage" style="margin-left: 320px;">
+		{% if error_message is not None %}
+			<font color="#FF0000"> {{error_message}} <br> </font>
+			{% endif %}
+	</div>
+	<div class="container">
+	    <div class="nav">
+	        <a class="login on">Add</a>
+	        <a class="login">From file</a>
+	    </div>
+
+	    <div class="contentbox">
+	        <div class="box active">
+	            <form action="{% url 'register:add' id %}" method="post">
+					{% csrf_token %}
+					<div class="IPv4-box">
+						<span style="color: red">*</span>
+						<label>IPv4</label>
+						<div class="IPv4-input">
+		        			<input type="text" name="IPv4" class="easyui-textbox"  iconWidth="28" style="width:280px;height:34px;padding:10px;" >
+		    			</div>
+					</div>
+
+					<div class="Port-box">
+						<span style="color: red">*</span>
+						<label>Port</label>
+						<div class="Port-input">
+		        			<input type="text" name="port" class="easyui-textbox"  iconWidth="28" style="width:280px;height:34px;padding:10px;" >
+		    			</div>
+					</div>
+				
+					<div class="user-box">
+						<span style="color: red">*</span>
+						<label>User&nbsp;Name</label>
+						<div class="user-input">
+		        			<input type="text" name="user" class="easyui-textbox"  iconWidth="28" style="width:280px;height:34px;padding:10px;" >
+		    			</div>
+					</div>
+
+					<div class="password-box">
+						<span style="color: red">*</span>
+						<label>Password</label>
+						<div class="password-input">
+		        			<input name="passwd" class="easyui-passwordbox"  iconWidth="28" style="width:280px;height:34px;padding:10px;" >
+		    			</div>
+					</div>
+				
+					<div class="path-box">
+						<span style="color: red">*</span>
+						<label>File&nbsp; Path</label>
+						<div class="path-input">
+		        			<input type="text" name="path" class="easyui-textbox"  iconWidth="28" style="width:280px;height:34px;padding:10px;" >
+		    			</div>
+					</div>
+				
+					<div class="submit-box">
+						<input id = "submit-button" type="submit" value="Submit" style="font-size: 15px">
+					</div>
+
+					<div class="cancel-box">
+						 <a href="{% url 'register:detail' id %}" style="text-decoration: none;color: grey;"> cancel </a>
+					</div>
+				</form>
+	        </div>
+	        <div class="box">
+	            <form action="{% url 'register:add_file' id %}" onsubmit="return is_error(this);" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="Upload_file_box">
+					<div style="margin-left: -70px;">
+						<label>Upload Server file:</label>
+					</div>
+					<input id="fname" type="text"  tabindex="1" style="font-size:15px;width:50%;margin-left:80px;height:40px;border:1px solid #34495E"/><!--用于显示上传文件名的input-->
+        			<input id="up_file" name="data" type="file"  style="display:none" onchange="document.getElementById('fname').value=this.value"/><!--实际起作用的file型input-->
+        			<input type="button" name="submit" style="font-size:15px;width:14%;height:40px;border:1px solid #34495E;margin-left:-5px;margin-top:2px;background-color:#34495E;color:#ffffff" value="browse" onclick="select_file();"/><!--用于触发file型input浏览按钮的button-->
+				</div>
+				
+				<div class="submit-box-file">
+					<input id = "submit-button" type="submit" value="Upload" style="margin-top: 20px;font-size: 15px" >
+				</div>
+
+				<div class="cancel-box" style="margin-top: 215px">
+					<a class="cancel-b" href="{% url 'register:detail' id %}" style="margin-left:-50px;text-decoration: none;color: grey;"> cancel </a>
+				</div>
+			</form>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>

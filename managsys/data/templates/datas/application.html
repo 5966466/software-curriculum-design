@@ -1,0 +1,263 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+{% load static %}
+<title>APP: {{ app.appName }}</title>
+
+<script type="text/javascript" language="javascript" src="{% static 'data/js/jquery.min.js' %}"></script>
+<style>
+@import url({% static 'data/css/Roboto.css' %});
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  color: #fff;
+  background: transparent;
+  border: none;
+}
+body {
+  background: #141414;
+  
+}
+.wrap {
+  max-width: 830px;
+  margin: 0 auto;
+}
+h1 {
+  overflow: hidden;
+  font-size: 58px;
+  height: 80px;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 4;
+  margin-bottom: 18px;
+  -webkit-transition: line-height 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: line-height 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+}
+h2 {
+  
+  font-size: 18px;
+  height: 20px;
+  overflow: hidden;
+  line-height: 4;
+  -webkit-transition: line-height 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: line-height 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+}
+h1 {
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+h2 {
+  margin-top: -6px;
+  font-weight: 400;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.two {
+  text-align: right;
+}
+.two .cta {
+  float: right;
+}
+.section.active h1 {
+  line-height: 1;
+  -webkit-transition-delay: .3s;
+  transition-delay: .3s;
+}
+.section.active h2 {
+  line-height: 1;
+  -webkit-transition-delay: .8s;
+  transition-delay: .8s;
+}
+.section.active .cta {
+  opacity: 1;
+  transform: translateX(0px);
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+}
+.cta {
+  -webkit-transition: all 0.85s cubic-bezier(0.77, 0, 0.175, 1) 0.8s;
+  transition: all 0.85s cubic-bezier(0.77, 0, 0.175, 1) 1.4s;
+  display: block;
+  cursor: pointer;
+  width: 175px;
+  height: 50px;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-30px);
+  -webkit-transform: translateX(-30px);
+  -moz-transform: translateX(-30px);
+}
+.cta:before {
+  content: "";
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 175px;
+  height: 50px;
+  transition: 0.4s all ease-out;
+  -webkit-transition: 0.4s all ease-out;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.cta:after {
+  content: ">";
+  opacity: 0.3;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  right: 40px;
+  transition: 0.3s all ease-out;
+  -webkit-transition: 0.3s all ease-out;
+}
+.cta span {
+  color: #fff;
+  text-align: center;
+  width: 80%;
+  display: block;
+  font-size: 14px;
+  height: 50px;
+  line-height: 50px;
+  font-weight: 500;
+  transition: 0.3s all ease-out;
+  -webkit-transition: 0.3s all ease-out;
+}
+.cta:hover span {
+  width: 100%;
+}
+.cta:hover:before {
+  opacity: 0.5;
+}
+.cta:hover:after {
+  opacity: 0;
+  right: 0px;
+  transition: 0.2s all ease-out;
+  -webkit-transition: 0.2s all ease-out;
+}
+#fp-nav ul li a.active span,
+.fp-slidesNav ul li a.active span,
+#fp-nav ul li:hover a.active span,
+.fp-slidesNav ul li:hover a.active span {
+  height: 12px;
+  width: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 0;
+  background: transparent;
+  border: solid 1px #fff;
+}
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+  border-radius: 0;
+  position: absolute;
+  z-index: 1;
+  height: 4px;
+  width: 4px;
+  border: 0;
+  background: #fff;
+  left: 50%;
+  top: 50%;
+  margin: -2px 0 0 -2px;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+#fp-nav ul li,
+.fp-slidesNav ul li {
+  height: 43px;
+}
+
+.button_app_html{
+  color: black;
+  background: transparent;
+  height: 60px;
+  width: 120px;
+  font-size: 30px;
+  cursor: pointer;
+  border: 2px solid grey;
+  margin-bottom: 20px;
+}
+
+.button_app_html:hover{
+  color: white;
+  background-color: black;
+  height: 60px;
+  width: 120px;
+  font-size: 30px;
+  cursor: pointer;
+  border: 1px solid white;
+}
+
+.btn_head_sculpture{
+  height: 120px;
+  width: 120px;
+  background-color:grey;
+  border: 0px solid grey;
+  border-radius: 50%;
+  cursor: pointer;
+  background-size:cover;
+}
+
+.btn_head_sculpture:hover{
+  border: 2px solid rgb(19, 121, 204);
+}
+
+</style>
+</head>
+<body>
+
+<link rel="stylesheet"  type="text/css" href="{% static 'data/css/jquery.fullPage.css' %}">  
+<script type="text/javascript" language="javascript" src="{% static 'data/js/jquery.fullPage.js' %}"></script>
+
+<div id="fullpage">
+	<div class="section one" style="background-image:url({% static 'data/css/back_slide1.jpg' %}); background-size:cover;">
+		<div class="wrap">
+    <button style="margin-left:360px; margin-bottom: 20px; background-image:url({% static url%});" class="btn_head_sculpture" onclick="location.href= '{% url 'data:detail' id 'default' %}'"></button>
+        <div style="width: 1000px"><h1 style="color:black;">Welcome to application</h1></div>
+        <h1 style="text-align: center; color:black;">{{ app.appName }}</h1>
+        {% if error_message is not None %}
+        <h2 style="color: red; font-size: 24px">{{error_message}}</h2>
+        {% endif %}
+		</div>
+	</div>
+  <div class="section two" style="background-image:url({% static 'data/css/circuit.png' %});">
+      <div style="margin-left:200px; margin-top: -100px; float: left; position: absolute; padding: 0px"> 
+      <h1 style="color:rgb(34, 32, 32); font-size: 32px;height:45px ">Choose file:</h1>
+      {% for f, d in f_d %}
+      <a href="{% url 'data:show_loading' id app.id f %}"><h2 style="font-size: 24px; height: 28px; color:black"> {{ f }} </h2></a>
+      <h2 style="font-size: 16px; height: 24px; color:rgb(112, 104, 102); margin-bottom: 16px; font-weight: 300px">{{d}}</h2>
+      {% endfor %}
+      </div>
+
+      <div class="cta" style="margin-left:800px; margin-top: -200px; float: left; position: absolute;">
+        <br><br>
+        <a href="{% url 'data:delete' id app.id %}"> <button class="button_app_html">Delete</button></a><br>
+        <a href="{% url 'data:before_revise' id app.id %}"> <button class="button_app_html">Revise</button></a><br>
+        <a href="{% url 'data:detail' id 'default' %}"> <button class="button_app_html">Return</button></a>
+      </div>
+
+
+	</div>
+</div>
+
+<script type="text/javascript">
+(function() {
+  $('#fullpage').fullpage({
+    navigation: true,
+  });
+})();
+</script>
+
+</body>
+</html>

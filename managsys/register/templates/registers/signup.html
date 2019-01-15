@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Signup</title>
+	{% load static %}
+	<link rel="stylesheet"  type="text/css" href="{% static 'register/css/home.css' %}">
+	<link rel="stylesheet"  type="text/css" href="{% static 'register/css/signup.css' %}"> 
+	<script type="text/javascript" language="javascript" src="{% static 'register/js/jquery.min.js' %}"></script>
+	<script type="text/javascript" language="javascript" src="{% static 'register/js/signup.js' %}"></script>
+</head>
+
+<body class="addback">
+	<div class="xiao-container">
+		<div class="xiao-register-box">
+			<div class="xiao-title-box">
+				<span>Sign Up</span>
+			</div>
+			<div class="xiao-error-messeage">
+			{% if error_message is not None %}
+				<font> {{error_message}} </font>
+			{% endif %}
+			</div>
+			<form action="{% url 'register:after_signup' %}" method="post">
+				{% csrf_token %}
+				<div class="xiao-username-box">
+					<span class="xiao-require">*</span>
+					<label for="username" style="font-size: 20px;">user name</label>
+				</div>
+				<div class="xiao-username-input">
+					<input type="text" id="username" name="in_name"  style="font-size:15px;width:330px" placeholder="No more than 16 characters" />
+				</div>
+ 				
+				<div class="xiao-userPassword-box">
+					<span class="xiao-require">*</span>
+					<label for="userPassword" style="font-size: 20px;">password</label>
+				</div>
+				<div class="xiao-userPassword-input">
+						<input type="password" id="userPassword" name="in_passwd" style="width:330px;font-size:15px;" placeholder="Between 6 and 20 characters" onKeyUp="CheckIntensity(this.value)">
+				</div>
+				
+				<div class="xiao-userRePassword-box">
+					<span class="xiao-require">*</span>
+					<label for="userRePassword" style="font-size: 20px;">repeat password</label>
+					<div class="passwordStrength-box">
+						<label style="font-size:15px;"> Strength:</label>
+						<div class="passwordStrength-input">
+						<table border="0" cellpadding="0" cellspacing="0"> 
+							<tr align="center" id = "pwd_str"> 
+			  					<td id="pwd_Weak" class="pwd pwd_c"> </td> 
+			  					<td id="pwd_Medium" class="pwd pwd_c pwd_f"></td> 
+			  					<td id="pwd_Strong" class="pwd pwd_c pwd_c_r"> </td> 
+	 						</tr> 
+						</table> 
+					</div>
+				</div>
+				</div>
+				<div class="xiao-userRePassword-input">
+						<input type="password" id="userRePassword" name="re_passwd" style="width:330px;font-size:15px;" placeholder="Please reinput password" />
+				</div>
+ 			
+				<div class="xiao-submit-box">
+					<input id = "xiao-submit-button" type="submit" value="Sign Up" >
+				</div>
+				
+				<div class="xiao-goLogin-box">
+					<a href="{% url 'register:login' %}" style="text-decoration: none;color: grey;">Log in</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

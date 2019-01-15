@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>-->
+
+<!--<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>-->
+
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">-->
+{% load static %}
+<script type="text/javascript" language="javascript" src="{% static 'data/js/jquery-1.10.2.min.js' %}"></script>
+<script type="text/javascript" language="javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+
+<link type="text/css"  rel="stylesheet" href="{% static 'data/css/demo.css' %}">
+
+<script type="text/javascript" language="javascript" src="{% static 'data/js/demo.js' %}"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}">
+  
+<style>
+.btn_show_approx{
+	width: 80px;
+	height: 40px;
+	outline: none;
+	font-size: 16px;
+	font-weight: 500;
+	color: rgb(58, 138, 236);
+	background-color: white;
+	border: 1px solid rgb(58, 138, 236);
+	border-radius: 7px;
+	cursor: pointer;
+}
+
+.btn_show_approx:hover{
+	background-color: rgb(172, 185, 201);
+	color: white;
+	border: 1px solid rgb(172, 185, 201);
+}
+
+.adjustdis{
+	width: 50px;
+	height: 40px;
+}
+
+</style>
+
+<script>
+$(document).ready(function() {
+    $('#detail').DataTable({
+    	dom: 'l<"adjustdis">Bfrtip',
+    	buttons:[
+    		'copy',
+    		'excel',
+    		'pdf',
+    		'print',
+    	],
+    });
+} );
+</script>
+<body>
+
+<div style=" width: 86%; margin-left: 7%; margin-top: 50px; border: 2px solid gray">
+<div style="margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border: 0px solid gray">
+<h1 style="color: white"> Item: {{ item }} </h1> <hr style="border: 0.5px solid white">
+<table id="detail" class="display" style="width:100%; color: white;">
+	<thead>
+		<tr>
+			{% for item in items %}
+				<th style="color: white"> {{ item }} </th>
+			{% endfor %}
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for value in values %}
+			<tr style="background: transparent">
+				{% for v in value %}
+					<td style="color:white; background: transparent"> {{ v }} </td>
+				{% endfor %}
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>
+</div>
+
+<p>
+	<a style="margin-left:92px" href="{% url 'data:show_approx' account.id app.id f %}"><button class="btn_show_approx">Return</button></a>
+</p>
+
+</body>
+</html>

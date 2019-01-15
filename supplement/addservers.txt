@@ -1,0 +1,4 @@
+IPv4          port user   passwd           path
+127.0.0.1      21  root   *******          /home/xxc/note.txt
+172.18.253.51  21  root   *******          /var/log/auth.log
+172.18.253.51  21  root   *******          /home/xxc/secure.log 

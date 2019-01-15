@@ -1,0 +1,9 @@
+<form action="{% url 'register:add_file' id %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{% if error_message is not None %}
+		<font color="#FF0000"> {{error_message}} <br> </font>
+	{% endif %}
+	Upload log file: <input type="file" name="data">
+	<br>
+	<input type="submit" value="Upload File"> &nbsp; <a href="{% url 'register:detail' id %}"> cancel </a>
+</form>

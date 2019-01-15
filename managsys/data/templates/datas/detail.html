@@ -1,0 +1,13 @@
+<h1> Account: {{ account.account_name }} </h1>
+<h2> Applications </h2>
+<ul>
+{% for app in account.app_set.all %}
+<li> <a href="{% url 'data:application' account.id app.id %}"> {{ app.appName }} </a> </li>
+{% endfor %}
+</ul>
+<p>
+	<a href="{% url 'data:manage_file' account.id %}"> Manage File </a>
+</p>
+<a href="{% url 'data:before_add' account.id %}"> Add </a> &nbsp;
+<a href="{% url 'register:detail' account.id %}"> Return </a> &nbsp;
+<a href="{% url 'register:logout' %}"> Logout </a>

@@ -1,0 +1,57 @@
+<h1> Account: {{ account.user.username }} </h1>
+<p> <a href="{% url 'data:detail' account.id %}"> Application </a> </p>
+{% load static %}
+<script type="text/javascript" language="javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}">
+  
+
+<script>
+$(document).ready(function() {
+    $('#detail').DataTable();
+} );
+</script>
+
+<img src="{% static url %}" width="50" height="50">
+<form action="{% url 'register:multi_process' account.id %}" method="post">
+	{% csrf_token %}
+	{% if error_message is not None %}
+		<font color="#FF0000"> {{error_message}} <br> </font>
+	{% endif %}
+
+<table id="detail" class="display" style="width:100%">
+	<thead>
+	<tr>
+		<th> IP Address </th>
+		<th> User </th>
+		<th> File Path </th>
+		<th> Operation </th>
+	</tr>
+	</thead>
+
+	<tbody>
+	{% for ip in account.ipaddr_set.all %}
+		<tr>
+			<td> <input type="checkbox" name="list" value="{{ ip.id }}"> {{ ip.ipAddr }}:{{ ip.port }} </td>
+			<td> {{ ip.userName }} </td>
+			<td> {{ ip.serverPath }} </td>
+			<td> <a href="{% url 'register:download' account.id ip.id %}"> Download </a> &nbsp; <a href="{% url 'register:before_revise' account.id ip.id %}"> Revise </a> &nbsp; <a href="{%  url 'register:delete' account.id ip.id %}"> Delete </a> </td>
+		
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+<input type="radio" name="choice" id="1" value="ftp">
+<label for="1"> FTP </label>
+&nbsp;
+<input type="radio" name="choice" id="2" value="sftp">
+<label for="2"> SFTP </label>
+<br>
+<input type="submit" value="Download All" name="post"> &nbsp;
+<input type="submit" value="Delete All" name="post"> &nbsp;
+<input type="submit" value="Revise" name="post"> &nbsp;
+</form>
+<a href="{% url 'register:before_add' account.id %}"> Add </a> &nbsp;
+<a href="{% url 'register:revise_account' account.id %}"> Revise Profile </a> &nbsp;
+<a href="{% url 'register:logout' %}"> Log out </a>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="css/login.css">
+    <title>revise_account</title>
+    {% load static %}
+    <meta charset="utf-8"> 
+	<link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/themes/default/easyui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/themes/icon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'register/jquery-easyui-1.6.11/demo.css' %}">
+	<link rel="stylesheet"  type="text/css" href="{% static 'register/css/signup.css' %}"> 
+    <link rel="stylesheet" type="text/css" href="{% static 'register/css/add.css' %}">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="{% static 'register/js/jquery.min.js' %}"></script>
+	<script type="text/javascript" language="javascript" src="{% static 'register/js/signup.js' %}"></script>
+    <script>
+    	function select_file(){
+        	document.getElementById("up_file").click();
+    		var name = document.getElementById("up_file").value;
+		}
+    </script>
+    <style type="text/css">
+    	.Upload_file_box{
+    		margin-top: 380px;
+    		margin-left: 70px;
+    	}
+    </style>
+</head>
+
+<body>
+	<div class="container" style="width: 460px;height: 540px;border-radius:4px;top: 30px;">
+		<form method="post" action="{% url 'register:after_revise' account.id %}" enctype="multipart/form-data">
+			{% csrf_token %}
+			<p class="title" style="margin-left: -30px;font-size:20px">Revise profile</p>
+			<div class="error_messeage" style="margin-left:10px;margin-top:60px;font-size: 15px">
+				{% if error_message is not None %}
+				<font color="#FF0000"> {{error_message}} <br> </font>
+				{% endif %}
+			</div>
+			<div class="IPv4-box" style="width: 300px;margin-left:70px;margin-top:70px;">
+				<label>Account Name:</label>
+				<div class="IPv4-input">
+					<input type="text" name="in_name" class="easyui-textbox"  iconWidth="28" style="width:280px;height:34px;padding:10px;margin-left:-50px;font-size:15px;"
+					value="{{ account.user.username }}" >
+				</div>
+			</div>
+
+			<div class="Port-box" style="width: 300px;margin-left:70px;margin-top:140px;">
+				<label>Input current password:</label>
+				<div class="Port-input">
+					<input type="password" name="old_passwd" class="easyui-textbox"  iconWidth="28" style="width:280px;height:34px;padding:10px;margin-left:-50px;font-size:15px;">
+				</div>
+			</div>
+
+			<div class="user-box" style="width: 300px;margin-left:70px;margin-top:220px;">
+				<label>Input new password:</label>				
+				<div class="user-input">
+					<input type="password" name="in_passwd" class="easyui-textbox"  iconWidth="28" style="width:280px;height:34px;padding:10px;margin-left: 5px;font-size:15px" onKeyUp="CheckIntensity(this.value)">
+				</div>
+				<div class="passwordStrength-box" style="margin-left:200px;
+				margin-top:0px;">
+					<label style="font-size:15px;margin-top:10px;"> Strength:</label>
+					<div class="passwordStrength-input" style="margin-left:70px;margin-top:-30px;">
+					<table border="0" cellpadding="0" cellspacing="0"> 
+						<tr align="center" id = "pwd_str"> 
+		  					<td id="pwd_Weak" class="pwd pwd_c"> </td> 
+		  					<td id="pwd_Medium" class="pwd pwd_c pwd_f"></td> 
+		  					<td id="pwd_Strong" class="pwd pwd_c pwd_c_r"> </td> 
+							</tr> 
+					</table> 
+				</div>
+			</div>
+			</div>
+
+			<div class="password-box" style="width: 300px;margin-left:70px;margin-top:300px;">
+				<label>Reinput new password:</label>
+				<div class="password-input">
+					<input type="password" name="re_passwd" class="easyui-passwordbox"  iconWidth="28" style="width:280px;height:34px;padding:10px;margin-left: -7px;font-size:15px;">
+				</div>
+			</div>
+			
+			<div class="Upload_file_box">
+				<label>Upload your Portrait:</label><br>
+				<input id="fname" type="text"  tabindex="1" style="font-size:15px;width:50%;margin-left:15px;height:40px;border:1px solid #34495E"/><!--用于显示上传文件名的input-->
+        		<input id="up_file" name="img" type="file"  style="display:none" onchange="document.getElementById('fname').value=this.value"/><!--实际起作用的file型input-->
+        		<input type="button" name="submit" style="font-size:15px;margin-left:-5px;margin-top:2px;width:14%;height:40px;border:1px solid #34495E;background-color:#34495E;color:#ffffff" value="browse" onclick="select_file();"/><!--用于触发file型input浏览按钮的button-->
+			</div>
+
+			<div class="submit-box" style="margin-top:480px;margin-left:220px">
+				<input id = "submit-button" type="submit" value="Revise" style="margin-left:-90px;font-size:15px;">
+			</div>
+
+			<div class="cancel-box" style="margin-top:490px;margin-left:240px;">
+				 <a href="{% url 'register:detail' account.id %}" style="text-decoration: none;margin-left:20px;color: grey;"> cancel </a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
