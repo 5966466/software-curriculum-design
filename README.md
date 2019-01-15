@@ -1,5 +1,5 @@
 # software curriculum design
-Worked with Gy and Lbl, who designed a fantastic front-end pages.
+Xxc worked with Gy and Lbl, who designed a fantastic front-end pages.
 ## The function of this web application
 This is a log file management system, which can help you manage some log files which store in you own server.
 ## How to run this
