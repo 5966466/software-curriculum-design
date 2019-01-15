@@ -3,7 +3,7 @@ Xxc worked with Gy and Lbl, who designed a fantastic front-end pages.
 ## The function of this web application
 This is a log file management system, which can help you manage some log files which store in you own server.
 ## How to run this
-We use Python 3.7 and Django 2.1 to develop this web application. Please ensure that you have this basic modules.
+We use Python 3.7 and Django 2.1 to develop this web application. Please ensure that you have these basic modules.
 
 If you have installed conda3 in your computer, you can install like this 
 
